@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "EdmondBold";
+    src: url(Edmondsans-Bold.otf);
+}
+
+@font-face {
+    font-family: "EdmondMedium";
+    src: url(Edmondsans-Medium.otf);
+}
+
+@font-face {
+    font-family: "EdmondRegular";
+    src: url(Edmondsans-Regular.otf);
+}
+
+@font-face {
+    font-family: "SullivanBevel";
+    src: url(Sullivan-Bevel.otf);
+}
+
+@font-face {
+    font-family: "SullivanFill";
+    src: url(Sullivan-Fill.otf);
+}
+
+@font-face {
+    font-family: "SullivanRegular";
+    src: url(Sullivan-Regular.otf);
+}
+
+@font-face {
+    font-family: "Cartoonist";
+    src: url(Cartoonist_Kooky.ttf);
+}
+
+@font-face {
+    font-family: "MissionGothicRegular";
+    src: url(Mission_Gothic_Regular.otf);
+}
+
+@font-face {
+    font-family: "MissionGothicBold";
+    src: url(Mission_Gothic_Bold.otf);
+}
