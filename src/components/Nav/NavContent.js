@@ -1,21 +1,34 @@
 import React from 'react';
-import { Button, Nav, Navbar, NavItem } from 'react-bootstrap';
+import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
 import './Nav.css';
 
-const NavContent = () => {
+const NavContent = ({ navActive, onLinkClicked }) => {
     return (
-        <Navbar>
-            <Navbar.Header>
-                <Navbar.Brand>
-                    <a href="#">React-Bootstrap</a>
-                </Navbar.Brand>
-            </Navbar.Header>
-            <Nav>
-                <NavItem eventKey={1} href="#">Link</NavItem>
-                <NavItem eventKey={2} href="#">Link</NavItem>
-            </Nav>
-        </Navbar>
+        <div>
+            <Navbar fluid fixedTop inverse>
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        <img alt="icon" className="navbar-icon" src="/favicon.png"/>
+                    </Navbar.Brand>
+                </Navbar.Header>
+                <Nav pullRight>
+                    <IndexLinkContainer to="/">
+                        <NavItem onClick={ (e) => {onLinkClicked("/")} } active={navActive[0]} eventKey={1} href="#">Home</NavItem>
+                    </IndexLinkContainer>
+                    <LinkContainer to="/projects">
+                        <NavItem onClick={ (e) => {onLinkClicked("/projects")} } active={navActive[1]} eventKey={2} href="#">Projects</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/gallery">
+                        <NavItem onClick={ (e) => {onLinkClicked("/gallery")} } active={navActive[2]} eventKey={3} href="#">Gallery</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/about">
+                        <NavItem onClick={ (e) => {onLinkClicked("/about")} } active={navActive[3]} eventKey={4} href="#">About</NavItem>
+                    </LinkContainer>
+                </Nav>
+            </Navbar>
+        </div>
     );
 };
 

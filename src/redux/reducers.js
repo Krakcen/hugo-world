@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux';
 import initStore from './initStore.js';
 
-const dummyReducer = (state = initStore.hello, action) => {
+const navActive = (state = initStore.navActive, action) => {
     switch (action.type) {
+        case 'SET_NAV_ACTIVE':
+            return (action.payload);
         default:
             return (state);
     }
 };
 
 const reducers = combineReducers({
-    dummyReducer: dummyReducer,
+    navActive: navActive,
 });
 
 export default reducers;

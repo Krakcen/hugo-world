@@ -1,7 +1,13 @@
 p {
     font-family: EdmondRegular;
+    margin: 0;
 }
 
 h1 {
     font-family: EdmondBold;
+    margin: 0;
+}
+
+.main-content {
+    padding-top: 80px;
 }

@@ -4,3 +4,35 @@
     height: 80px;
     padding-top: 0;
 }
+
+.navbar-inverse > .container-fluid {
+    padding-left: 120px;
+    padding-right: 160px;
+    font-size: 22px;
+    font-family: EdmondBold;
+}
+
+
+/* link override */
+.navbar-inverse .navbar-nav>li>a {
+    color: #f28915;
+    text-shadow: none;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+    color: #e1701f;
+    text-shadow: 3px 3px 10px #595959;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #e1701f;
+    text-shadow: 3px 3px 10px #595959;
+    background-color: transparent;
+}
+/* end */
+
+
+.navbar-icon {
+    padding: 8px;
+}

@@ -2,7 +2,9 @@ import React from 'react';
 
 const Gallery = () => {
     return (
-        <div>Nav</div>
+        <div className="main-content">
+            Nav
+        </div>
     );
 };
 
