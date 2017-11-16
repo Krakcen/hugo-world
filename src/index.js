@@ -8,6 +8,5 @@ import './index.css';
 import './static/fonts/fonts.css';
 import App from './components/App/App.js';
 
-
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
