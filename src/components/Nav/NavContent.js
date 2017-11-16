@@ -1,5 +1,6 @@
 import React from 'react';
 import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
 import './Nav.css';
@@ -8,11 +9,13 @@ const NavContent = ({ navActive, onLinkClicked }) => {
     return (
         <div>
             <Navbar fluid fixedTop inverse>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <img alt="icon" className="navbar-icon" src="/favicon.png"/>
-                    </Navbar.Brand>
-                </Navbar.Header>
+                <Link to="/">
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                                <img alt="icon" className="navbar-icon" src="/favicon.png"/>
+                        </Navbar.Brand>
+                    </Navbar.Header>
+                </Link>
                 <Nav pullRight>
                     <IndexLinkContainer to="/">
                         <NavItem onClick={ (e) => {onLinkClicked("/")} } active={navActive[0]} eventKey={1} href="#">Home</NavItem>

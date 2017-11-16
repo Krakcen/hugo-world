@@ -4,11 +4,15 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { Route, Switch } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 
 import './App.css';
 
 //Redux
 import reducers from '../../redux/reducers.js';
+
+//Utils
+import { bounceTransition } from '../../utils/transitions.js';
 
 //Components
 import Nav from '../Nav/Nav.js';
@@ -17,6 +21,14 @@ import About from '../About/About.js';
 import Projets from '../Projects/Projects.js';
 import Gallery from '../Gallery/Gallery.js';
 import NotFound from '../404/404.js';
+
+
+function mapStyles(styles) {
+    return {
+        opacity: styles.opacity,
+        transform: `scale(${styles.scale})`,
+    };
+}
 
 class App extends Component {
     constructor(props) {
@@ -30,13 +42,19 @@ class App extends Component {
                 <Router history={this.history}>
                     <div>
                         <Nav/>
-                        <Switch>
+                        <AnimatedSwitch
+                            atEnter={bounceTransition.atEnter}
+                            atLeave={bounceTransition.atLeave}
+                            atActive={bounceTransition.atActive}
+                            mapStyles={mapStyles}
+                            className="switch-wrapper"
+                        >
                             <Route exact path="/" component={HomePage}/>
                             <Route path="/about" component={About}/>
                             <Route path="/projects" component={Projets}/>
                             <Route path="/gallery" component={Gallery}/>
                             <Route component={NotFound}/>
-                        </Switch>
+                        </AnimatedSwitch>
                     </div>
                 </Router>
             </Provider>
