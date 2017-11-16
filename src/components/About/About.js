@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Col, Row, Image } from 'react-bootstrap';
+import aboutImage from '../../static/images/front-page-image-container-alpha.png';
 
 import './About.css';
 
@@ -9,7 +10,7 @@ const About = () => {
             <Grid fluid>
                 <Row>
                     <Col smOffset={2} sm={4}>
-                        <Image src="./front-page-image-container-alpha.png" responsive />
+                        <Image src={aboutImage} responsive />
                     </Col>
                     <Col sm={4} className="hugo-about-text">
                         <h1 className="text-center">About Me</h1>

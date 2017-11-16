@@ -3,6 +3,7 @@ import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
+import hugoIcon from '../../static/images/favicon.png';
 import './Nav.css';
 
 const NavContent = ({ navActive, onLinkClicked }) => {
@@ -12,7 +13,7 @@ const NavContent = ({ navActive, onLinkClicked }) => {
                 <Link to="/">
                     <Navbar.Header>
                         <Navbar.Brand>
-                                <img alt="icon" className="navbar-icon" src="/favicon.png"/>
+                                <img alt="icon" className="navbar-icon" src={hugoIcon}/>
                         </Navbar.Brand>
                     </Navbar.Header>
                 </Link>
