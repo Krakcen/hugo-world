@@ -10,7 +10,7 @@ const About = () => {
             <Grid fluid>
                 <Row>
                     <Col smOffset={2} sm={4}>
-                        <Image onLoad={console.log("loaded")} src={aboutImage} responsive />
+                        <Image onLoad={() => {console.log("loaded")}} src={aboutImage} responsive />
                     </Col>
                     <Col sm={4} className="hugo-about-text">
                         <h1 className="text-center">About Me</h1>
