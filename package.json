@@ -1,7 +1,7 @@
 {
   "name": "hugo-world",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "https://krakcen.github.io/hugo-world",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
