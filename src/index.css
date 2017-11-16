@@ -8,6 +8,42 @@ h1 {
     margin: 0;
 }
 
+h4 {
+    font-family: EdmondBold;
+}
+
 .main-content {
     padding-top: 80px;
+}
+
+
+/* custom link */
+.hugo-link-text {
+    color: #f28915;
+    font-weight: bold;
+}
+
+.hugo-link-text:hover {
+    color: #f28915;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.hugo-link-text:focus {
+    color: #f28915;
+    outline: 0;
+    outline-offset: 0;
+    text-decoration: none;
+}
+/* */
+.popover-content {
+    padding: 5px 0px;
+}
+
+.list-group-item {
+    border: 0;
+}
+
+a.list-group-item:hover .list-group-item-heading {
+    color: #f28915;
 }

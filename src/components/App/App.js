@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { Route, Switch } from 'react-router';
+import { Route } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 
@@ -16,6 +16,7 @@ import { bounceTransition } from '../../utils/transitions.js';
 
 //Components
 import Nav from '../Nav/Nav.js';
+import Footer from '../Footer/Footer.js';
 import HomePage from '../HomePage/HomePage.js';
 import About from '../About/About.js';
 import Projets from '../Projects/Projects.js';
@@ -55,6 +56,7 @@ class App extends Component {
                             <Route path="/gallery" component={Gallery}/>
                             <Route component={NotFound}/>
                         </AnimatedSwitch>
+                        <Footer/>
                     </div>
                 </Router>
             </Provider>
