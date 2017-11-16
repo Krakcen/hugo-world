@@ -13,7 +13,7 @@ const NavContent = ({ navActive, onLinkClicked }) => {
                 <Link to="/">
                     <Navbar.Header>
                         <Navbar.Brand>
-                                <img alt="icon" className="navbar-icon" src={hugoIcon}/>
+                            <img onLoad={console.log("loaded")} onClick={ (e) => {onLinkClicked("/")} } alt="icon" className="navbar-icon" src={hugoIcon}/>
                         </Navbar.Brand>
                     </Navbar.Header>
                 </Link>
