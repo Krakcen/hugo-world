@@ -36,3 +36,18 @@
 .navbar-icon {
     padding: 8px;
 }
+
+
+/* Social Links */
+.hugo-social-links {
+    margin-left: 50px;
+}
+
+.hugo-social-link {
+    line-height: inherit;
+}
+
+.fa-hugo {
+    font-size: 1.6em;
+    line-height: inherit;
+}

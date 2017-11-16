@@ -16,6 +16,20 @@ const NavContent = ({ navActive, onLinkClicked }) => {
                         </Navbar.Brand>
                     </Navbar.Header>
                 </Link>
+                <Nav className="hugo-social-links">
+                    <NavItem target="_blank" eventKey={5} href="https://github.com/Krakcen">
+                        <i className="hugo-social-link fa fa-github-square fa-hugo"/>
+                    </NavItem>
+                    <NavItem target="_blank" eventKey={6} href="https://www.linkedin.com/in/hugo-v">
+                        <i className="hugo-social-link fa fa-linkedin-square fa-hugo"/>
+                    </NavItem>
+                    <NavItem target="_blank" eventKey={7} href="https://www.facebook.com/hugo.vlvieille.5">
+                        <i className="hugo-social-link fa fa-facebook-square fa-hugo"/>
+                    </NavItem>
+                    <NavItem target="_blank" eventKey={8} href="https://www.instagram.com/minikracken">
+                        <i className="hugo-social-link fa fa-instagram fa-hugo"/>
+                    </NavItem>
+                </Nav>
                 <Nav pullRight>
                     <IndexLinkContainer to="/">
                         <NavItem onClick={ (e) => {onLinkClicked("/")} } active={navActive[0]} eventKey={1} href="#">Home</NavItem>

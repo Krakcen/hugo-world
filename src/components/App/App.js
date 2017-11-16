@@ -28,6 +28,9 @@ function mapStyles(styles) {
     return {
         opacity: styles.opacity,
         transform: `scale(${styles.scale})`,
+        position: (styles.foo <= 1) ? 'relative': 'absolute',
+        width: '100%',
+        height: '100%',
     };
 }
 
