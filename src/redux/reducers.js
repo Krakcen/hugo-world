@@ -10,8 +10,18 @@ const navActive = (state = initStore.navActive, action) => {
     }
 };
 
+const imageLoad = (state = initStore.imageState, action) => {
+    switch (action.type) {
+        case 'SET_IMG_LOAD_ABOUT':
+            return (Object.assign({}, state, {about: action.payload}));
+        default:
+            return (state);
+    }
+};
+
 const reducers = combineReducers({
     navActive: navActive,
+    imageLoad: imageLoad,
 });
 
 export default reducers;
