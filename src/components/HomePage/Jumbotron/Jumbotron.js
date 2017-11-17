@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import {paper} from 'paper/dist/paper-full.min';
+import { paper } from 'paper';
 
 import './Jumbotron.css';
 
