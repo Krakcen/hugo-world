@@ -11,6 +11,7 @@ import meteor from '../../../static/images/jumbotron/meteor_icon.png';
 import react from '../../../static/images/jumbotron/react_icon.png';
 import slack from '../../../static/images/jumbotron/slack_icon.png';
 import trello from '../../../static/images/jumbotron/trello_icon.png';
+import space1 from '../../../static/images/jumbotron/space1.jpg';
 
 class Jumbotron extends Component {
     constructor(props) {
@@ -26,6 +27,7 @@ class Jumbotron extends Component {
             <div>
                 <canvas id="hugo-jumbotron"/>
                 <div style={{display:'none'}}>
+                    <img alt="none" src={space1} id="space1-jumbo"/>
                     <img alt="none" src={boostrap} id="bootstrap-logo-jumbo"/>
                     <img alt="none" src={github} id="github-logo-jumbo"/>
                     <img alt="none" src={heroku} id="heroku-logo-jumbo"/>
