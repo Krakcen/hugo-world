@@ -30,7 +30,7 @@ class Jumbotron extends Component {
 
         paper.view.onFrame = function(event) {
             path.rotate(3);
-            circle.fillColor.hue += 1;
+            circle.fillColor.hue += 3;
         };
         paper.view.draw();
     }
