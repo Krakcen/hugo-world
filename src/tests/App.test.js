@@ -8,7 +8,7 @@ import 'flag-icon-css/css/flag-icon.min.css';
 import '../index.css';
 import '../static/fonts/fonts.css';
 
-/*it('renders without crashing', () => {
+it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
-});*/
+});
