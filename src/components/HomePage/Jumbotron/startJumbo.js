@@ -17,10 +17,10 @@ const iconList = [
     "slack-logo-jumbo",
     "trello-logo-jumbo",
 ];
-let linkList = [{
+/*let linkList = [{
     el1: 'hello',
     el2: 'world',
-}];
+}];*/
 
 //util
 /*const displayPositions = (rasterList) => {
@@ -46,7 +46,7 @@ const getRaster = (id, canvas) => {
     raster.scale(0.35);
     return (raster);
 };
-const getLinks = (rasterList) => {
+/*const getLinks = (rasterList) => {
   for (let el in rasterList) {
       let curEl = rasterList[el];
       for (let el1 in rasterList) {
@@ -56,7 +56,8 @@ const getLinks = (rasterList) => {
       }
       console.log(' ');
   }
-};
+};*/
+
 const initScene = (canvas) => {
     let rect = new paper.Path.Rectangle({
         point: [-25, -25],
@@ -79,7 +80,7 @@ const initScene = (canvas) => {
             tween: null,
         });
     }
-    linkList = getLinks(rasters);
+    //linkList = getLinks(rasters);
 
     return (rasters);
 };
