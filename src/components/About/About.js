@@ -26,11 +26,10 @@ const About = ({imgAboutState, onImageLoadAbout}) => {
                     <Col sm={4} className="hugo-about-text">
                         <h1 className="text-center">About Me</h1>
                         <p>
-                            Maecenas placerat ligula mi, vitae semper ex condimentum nec. Nulla at pretium massa. Mauris vitae quam sollicitudin, Maecenas vestibulum vitae nibh quis mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas placerat ligula mi, vitae semper ex condimentum nec. Nulla at pretium massa. Mauris vitae quam sollicitudin, Maecenas vestibulum vitae nibh quis mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas placerat ligula mi, vitae semper ex condimentum nec. Nulla at pretium massa. Mauris vitae quam sollicitudin, Maecenas vestibulum vitae nibh quis mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas placerat ligula mi, vitae semper ex condimentum nec. Nulla at pretium massa. Mauris vitae quam sollicitudin, Maecenas vestibulum vitae nibh quis mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
+                            I am a freelance web developer, studying at EPITECH, Lyon.
+                            My greatest interest in programming is being part of the JavaScript open-source community, that helps me building full JS server/client web apps i can be proud of.
+                            <br/>
+                            When i'm not working, i like to go skating the streets of Lyon, or gaming. I also like to cook and take photos.                        </p>
                     </Col>
                 </Row>
             </Grid>

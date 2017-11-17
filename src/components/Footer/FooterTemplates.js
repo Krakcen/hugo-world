@@ -36,6 +36,9 @@ export const ThirdParty = () => (
         <ListGroupItem target="_blank" header="Font Awesome" href="https://github.com/FortAwesome/Font-Awesome">
             FortAwesome
         </ListGroupItem>
+        <ListGroupItem target="_blank" header="paper.js" href="https://github.com/paperjs/paper.js">
+            paperjs
+        </ListGroupItem>
         <ListGroupItem target="_blank" header="flag-icon-css" href="https://github.com/lipis/flag-icon-css">
             lipis
         </ListGroupItem>
