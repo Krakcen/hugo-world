@@ -31,7 +31,6 @@ class Jumbotron extends Component {
         }, 1000);
     }
     render() {
-        console.log(this.props.jumboState);
         return (
             <div>
                 { this.props.jumboState

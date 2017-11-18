@@ -155,8 +155,8 @@ const startTween = (rasterList) => {
     });
 };
 
-const drawLinks = (rasterList) => {
-};
+/*const drawLinks = (rasterList) => {
+};*/
 
 const updateLink = (path, pointA, pointB) => {
 
