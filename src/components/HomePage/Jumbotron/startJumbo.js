@@ -15,6 +15,20 @@ const iconList = [
     "react-logo-jumbo",
     "slack-logo-jumbo",
     "trello-logo-jumbo",
+    "bootstrap-logo-jumbo",
+    "github-logo-jumbo",
+    "heroku-logo-jumbo",
+    "meteor-logo-jumbo",
+    "react-logo-jumbo",
+    "slack-logo-jumbo",
+    "trello-logo-jumbo",
+    "bootstrap-logo-jumbo",
+    "github-logo-jumbo",
+    "heroku-logo-jumbo",
+    "meteor-logo-jumbo",
+    "react-logo-jumbo",
+    "slack-logo-jumbo",
+    "trello-logo-jumbo",
 ];
 /*let linkList = [{
     el1: 'hello',
@@ -158,8 +172,9 @@ const startTween = (rasterList) => {
 /*const drawLinks = (rasterList) => {
 };*/
 
-const updateLink = (path, pointA, pointB) => {
 
+//needs opacity handler
+/*const updateLink = (path, pointA, pointB) => {
     let tmp = new paper.Path();
     tmp.add(pointA);
     tmp.add(pointB);
@@ -171,7 +186,8 @@ const updateLink = (path, pointA, pointB) => {
     path.addSegments([startPoint, destPoint]);
     path.opacity = 0.5;
     tmp.remove();
-};
+    return (path);
+};*/
 
 export const startJumbo = (canvas) => {
     paper.setup(canvas);
@@ -182,7 +198,7 @@ export const startJumbo = (canvas) => {
     stopWatch = null;
 
     //sandbox
-    let myPath = new paper.Path();
+    /*let myPath = new paper.Path();
     myPath.strokeColor = 'white';
     myPath.add(new paper.Point(0, 0));
     myPath.add(new paper.Point(100, 50));
@@ -197,7 +213,7 @@ export const startJumbo = (canvas) => {
     dest.strokeColor = 'green';
     dest.strokeWidth = 2;
 
-    updateLink(myPath, {x:100, y:70}, {x:600, y:400});
+    updateLink(myPath, {x:100, y:70}, {x:600, y:400});*/
     //
 
     paper.view.onFrame = function(event) {
