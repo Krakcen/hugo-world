@@ -1,12 +1,11 @@
 import { paper } from 'paper';
 import TWEEN from 'tween.js';
 
+import { circleRadius, borderCollision, idleTimer, animationTimer  } from './varJumbo.js';
+//import { displayGrid, displayCollisions, resetCollisions } from './debugJumbo.js';
+
 let loopState = 'ANIMATION_READY';
 let stopWatch = null;
-
-const borderCollision = (125*0.35) + 25;
-const idleTimer = 1.5;
-const animationTimer = 1000;
 
 const iconList = [
     "bootstrap-logo-jumbo",
@@ -28,10 +27,13 @@ const iconList = [
 };*/
 //
 
-const getRandomPoint = (canvas) => {
-    let maxPoint = new paper.Point(canvas.width - borderCollision, canvas.height - borderCollision);
-    let randomPoint = paper.Point.random();
-    let finalPoint = maxPoint;
+const getRandomPoint = () => {
+    let maxPoint = new paper.Point(paper.view.size.width - borderCollision, paper.view.size.height - borderCollision);
+    let randomPoint;
+    let finalPoint;
+
+    randomPoint = paper.Point.random();
+    finalPoint = Object.assign({}, maxPoint);
     finalPoint.x = Math.round(finalPoint.x * randomPoint.x);
     finalPoint.y = Math.round(finalPoint.y * randomPoint.y);
     if (finalPoint.x < borderCollision)
@@ -40,23 +42,75 @@ const getRandomPoint = (canvas) => {
         finalPoint.y = borderCollision;
     return (finalPoint);
 };
-const getRaster = (id, canvas) => {
+
+const getRandomPoints = (pointNb) => {
+    let i = 0;
+    let pointList = [];
+    let fail = false;
+    let maxLoop = 0;
+
+    while (i < pointNb) {
+        let randomPoint = getRandomPoint();
+        let candidateSquare = {
+            top: randomPoint.y - circleRadius,
+            bottom: randomPoint.y + circleRadius,
+            left: randomPoint.x - circleRadius,
+            right: randomPoint.x + circleRadius,
+        };
+
+        if (i === 0) {
+            pointList.push(randomPoint);
+            i++;
+        }
+        else {
+            for (let k = 0; k < pointList.length; k++) {
+                if (k !== i) {
+                    let testerSquare = {
+                        top: pointList[k].y - circleRadius,
+                        bottom: pointList[k].y + circleRadius,
+                        left: pointList[k].x - circleRadius,
+                        right: pointList[k].x + circleRadius,
+                    };
+                    if (((candidateSquare.left < testerSquare.right && candidateSquare.left > testerSquare.left) ||
+                        (candidateSquare.right > testerSquare.left && candidateSquare.right < testerSquare.right)) &&
+                        ((candidateSquare.top < testerSquare.bottom && candidateSquare.top > testerSquare.top) ||
+                        (candidateSquare.bottom < testerSquare.bottom && candidateSquare.bottom > candidateSquare.top))) {
+                        fail = true;
+                        maxLoop++;
+                        //displayCollisions(maxLoop, randomPoint.x, randomPoint.y, pointList[k].x, pointList[k].y);
+                        break;
+                    }
+                }
+            }
+            if (fail && maxLoop < 40)
+                fail = false;
+            else {
+                pointList.push(randomPoint);
+                i++;
+                maxLoop = 0;
+            }
+        }
+    }
+    return (pointList);
+};
+
+const getRaster = (id) => {
     let raster = new paper.Raster(id);
-    raster.position = getRandomPoint(canvas);
+    raster.position = paper.view.center;
     raster.scale(0.35);
     return (raster);
 };
+
 /*const getLinks = (rasterList) => {
   for (let el in rasterList) {
       let curEl = rasterList[el];
       for (let el1 in rasterList) {
-          if (curEl != rasterList[el1]) {
-              console.log(el1);
+          if (curEl !== rasterList[el1]) {
           }
       }
-      console.log(' ');
   }
 };*/
+
 
 const initScene = (canvas) => {
     let rect = new paper.Path.Rectangle({
@@ -76,19 +130,23 @@ const initScene = (canvas) => {
     for (let el in iconList) {
         rasters.push({
             name: iconList[el],
-            raster: getRaster(iconList[el], canvas),
+            raster: getRaster(iconList[el]),
             tween: null,
         });
     }
     //linkList = getLinks(rasters);
 
+    //displayGrid();
+
     return (rasters);
 };
 
-const startTween = (rasterList, canvas) => {
-    for (let el in rasterList) {
+const startTween = (rasterList) => {
+    let randomPoints = getRandomPoints(rasterList.length);
+
+    for (let el = 0; el < rasterList.length; el++) {
         rasterList[el].tween = new TWEEN.Tween(rasterList[el].raster.position);
-        rasterList[el].tween.to(getRandomPoint(canvas) , animationTimer);
+        rasterList[el].tween.to(randomPoints[el] , animationTimer);
         rasterList[el].tween.easing(TWEEN.Easing.Quartic.InOut);
         rasterList[el].tween.start();
     }
@@ -98,7 +156,21 @@ const startTween = (rasterList, canvas) => {
 };
 
 const drawLinks = (rasterList) => {
+};
 
+const updateLink = (path, pointA, pointB) => {
+
+    let tmp = new paper.Path();
+    tmp.add(pointA);
+    tmp.add(pointB);
+
+    let startPoint = tmp.getPointAt(circleRadius);
+    let destPoint = tmp.getPointAt(tmp.length - circleRadius);
+
+    path.removeSegments();
+    path.addSegments([startPoint, destPoint]);
+    path.opacity = 0.5;
+    tmp.remove();
 };
 
 export const startJumbo = (canvas) => {
@@ -106,12 +178,34 @@ export const startJumbo = (canvas) => {
 
     let rasterList = initScene(canvas);
 
+    loopState = "ANIMATION_READY";
+    stopWatch = null;
+
+    //sandbox
+    let myPath = new paper.Path();
+    myPath.strokeColor = 'white';
+    myPath.add(new paper.Point(0, 0));
+    myPath.add(new paper.Point(100, 50));
+
+    myPath.strokeWidth = 2;
+
+    let src = new paper.Path.Circle(new paper.Point(100, 70), circleRadius);
+    src.strokeColor = 'green';
+    src.strokeWidth = 2;
+
+    let dest = new paper.Path.Circle(new paper.Point(600, 400), circleRadius);
+    dest.strokeColor = 'green';
+    dest.strokeWidth = 2;
+
+    updateLink(myPath, {x:100, y:70}, {x:600, y:400});
+    //
+
     paper.view.onFrame = function(event) {
-        drawLinks(rasterList);
+        //drawLinks(rasterList);
         switch (loopState) {
             case 'ANIMATION_READY':
                 loopState = 'ANIMATION_IN_PROGRESS';
-                startTween(rasterList, canvas);
+                startTween(rasterList);
                 return (0);
             case 'ANIMATION_IN_PROGRESS':
                 TWEEN.update();
@@ -122,6 +216,7 @@ export const startJumbo = (canvas) => {
                 else {
                     if ((event.time - stopWatch) > idleTimer) {
                         loopState = 'ANIMATION_READY';
+                        //resetCollisions();
                         stopWatch = null;
                     }
                 }

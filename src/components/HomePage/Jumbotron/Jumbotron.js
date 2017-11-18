@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Image } from 'react-bootstrap';
 
+import { setJumboLoad } from '../../../redux/actions.js';
+import loaderEclipse from '../../../static/images/loader_eclipse.svg';
 import './Jumbotron.css';
 import { startJumbo } from './startJumbo.js';
 
@@ -20,12 +23,24 @@ class Jumbotron extends Component {
         this.canvas = null;
     }
     componentDidMount() {
-        startJumbo(document.getElementById('hugo-jumbotron'));
+        //dirty
+        this.props.setJumboState(false);
+        setTimeout(() => {
+            this.props.setJumboState(true);
+            startJumbo(document.getElementById('hugo-jumbotron'));
+        }, 1000);
     }
     render() {
+        console.log(this.props.jumboState);
         return (
             <div>
-                <canvas id="hugo-jumbotron"/>
+                { this.props.jumboState
+                    ? <canvas id="hugo-jumbotron"/>
+                    : <div className="hugo-jumbotron-loading text-center">
+                        <h1>Loading</h1>
+                        <Image src={loaderEclipse}/>
+                    </div>
+                }
                 <div style={{display:'none'}}>
                     <img alt="none" src={space1} id="space1-jumbo"/>
                     <img alt="none" src={boostrap} id="bootstrap-logo-jumbo"/>
@@ -43,11 +58,13 @@ class Jumbotron extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return ({
+        jumboState: state.jumboLoad,
     });
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return ({
+        setJumboState: (jumboState) => { dispatch(setJumboLoad(jumboState)) },
     });
 };
 

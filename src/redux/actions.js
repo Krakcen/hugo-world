@@ -13,3 +13,10 @@ export const setImageLoad = (type, imageState) => {
         payload: imageState,
     };
 };
+
+export const setJumboLoad = (jumboState) => {
+    return {
+        type: 'SET_JUMBO_LOAD',
+        payload: jumboState,
+    };
+}

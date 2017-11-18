@@ -19,9 +19,19 @@ const imageLoad = (state = initStore.imageState, action) => {
     }
 };
 
+const jumboLoad = (state = initStore.jumboState, action) => {
+    switch (action.type) {
+        case 'SET_JUMBO_LOAD':
+            return (action.payload);
+        default:
+            return (state);
+    }
+};
+
 const reducers = combineReducers({
     navActive: navActive,
     imageLoad: imageLoad,
+    jumboLoad: jumboLoad,
 });
 
 export default reducers;

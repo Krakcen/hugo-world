@@ -1,9 +1,9 @@
 const store = {
     navActive: [true, false, false, false],
     imageState: {
-        dummy: false,
         about: false,
     },
+    jumboState: false,
     hello: "Hello World",
 };
 
