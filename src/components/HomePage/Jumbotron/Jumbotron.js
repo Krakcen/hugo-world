@@ -34,8 +34,8 @@ class Jumbotron extends Component {
         return (
             <div>
                 { this.props.jumboState
-                    ? <canvas id="hugo-jumbotron"/>
-                    : <div className="hugo-jumbotron-loading text-center">
+                    ? <canvas width={window.innerWidth} height={window.innerHeight - 140} id="hugo-jumbotron"/>
+                    : <div style={{ height: window.innerHeight - 140, width: window.innerWidth, paddingTop: (window.innerHeight -140) / 3 }} className="hugo-jumbotron-loading text-center">
                         <h1>Loading</h1>
                         <Image src={loaderEclipse}/>
                     </div>
