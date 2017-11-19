@@ -15,6 +15,7 @@ import react from '../../../static/images/jumbotron/react_icon.png';
 import slack from '../../../static/images/jumbotron/slack_icon.png';
 import trello from '../../../static/images/jumbotron/trello_icon.png';
 import space1 from '../../../static/images/jumbotron/space1.jpg';
+import space2 from '../../../static/images/jumbotron/space2.jpg';
 
 class Jumbotron extends Component {
     constructor(props) {
@@ -34,14 +35,15 @@ class Jumbotron extends Component {
         return (
             <div>
                 { this.props.jumboState
-                    ? <canvas width={window.innerWidth} height={window.innerHeight - 140} id="hugo-jumbotron"/>
-                    : <div style={{ height: window.innerHeight - 140, width: window.innerWidth, paddingTop: (window.innerHeight -140) / 3 }} className="hugo-jumbotron-loading text-center">
+                    ? <canvas width={window.innerWidth} height={window.innerHeight - 80} id="hugo-jumbotron"/>
+                    : <div style={{ height: window.innerHeight - 80, width: window.innerWidth, paddingTop: (window.innerHeight - 140) / 3 }} className="hugo-jumbotron-loading text-center">
                         <h1>Loading</h1>
                         <Image src={loaderEclipse}/>
                     </div>
                 }
                 <div style={{display:'none'}}>
                     <img alt="none" src={space1} id="space1-jumbo"/>
+                    <img alt="none" src={space2} id="space2-jumbo"/>
                     <img alt="none" src={boostrap} id="bootstrap-logo-jumbo"/>
                     <img alt="none" src={github} id="github-logo-jumbo"/>
                     <img alt="none" src={heroku} id="heroku-logo-jumbo"/>

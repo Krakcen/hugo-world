@@ -3,6 +3,7 @@ import TWEEN from 'tween.js';
 export const circleRadius = (125 * 0.35);
 export const borderCollision = (125 * 0.35) + 25;
 export const idleTimer = 1.3;
+export const starCount = 50;
 export const animationTimer = 3000;
 export const linkOptions = {
     segments: [[0, 0], [0, 0]],

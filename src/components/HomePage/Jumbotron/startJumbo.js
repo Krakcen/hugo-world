@@ -2,11 +2,12 @@ import { paper } from 'paper';
 import TWEEN from 'tween.js';
 
 //import { displayGrid, displayCollisions, resetCollisions } from './debugJumbo.js';
-import { circleRadius, borderCollision, idleTimer, animationTimer, iconList, linkOptions, /*tweenEases*/ } from './varJumbo.js';
+import { circleRadius, borderCollision, idleTimer, animationTimer, iconList, linkOptions, starCount /*tweenEases*/ } from './varJumbo.js';
 
 let loopState = 'ANIMATION_READY';
 let stopWatch = null;
 let linksList = [];
+let starList = [];
 
 
 const getPointFromRaster = (name, rasterList) => {
@@ -105,10 +106,38 @@ const getLinks = (linkList, rasterList) => {
     return (linkList);
 };
 
+const updateStars = () => {
+    for (let i = 0; i < starList.length; i++) {
+        starList[i].position.x += starList[i].bounds.width / 20;
+        if (starList[i].bounds.left > paper.view.size.width) {
+            starList[i].position.x = -starList[i].bounds.width;
+        }
+    }
+};
+const initStars = () => {
+    let path = new paper.Path.Circle({
+        center: [0, 0],
+        radius: 10,
+        fillColor: 'white',
+        strokeColor: 'white',
+        shadowColor: 'white',
+        shadowBlur: 50,
+    });
+    let symbol = new paper.Symbol(path);
+    for (let i = 0; i < starCount; i++) {
+        let center = getRandomPoint();
+        starList.push(symbol.place(center));
+        starList[i].scale((i * 0.40) / starCount);
+    }
+};
+
 const initScene = () => {
     let linkList = [];
 
     let rasters = [];
+
+    initStars();
+
     for (let el = 0; el < iconList.length; el++) {
         rasters.push({
             name: iconList[el] + "-" + el,
@@ -127,7 +156,8 @@ const initScene = () => {
     rect.sendToBack();
     rect.fillColor = new paper.Color(0, 0, 0, 0.5);
 
-    let space1 = new paper.Raster('space1-jumbo');
+    //let space1 = new paper.Raster('space1-jumbo');
+    let space1 = new paper.Raster('space2-jumbo');
     space1.size = paper.view.viewSize;
     space1.position = paper.view.center;
     space1.sendToBack();
@@ -192,7 +222,6 @@ const updateLinks = (linksList, rasterList) => {
 export const startJumbo = (canvas) => {
     paper.setup(canvas);
 
-    //let first
     let initRes = initScene();
     let rasterList = initRes.rasters;
     linksList = initRes.links;
@@ -201,7 +230,7 @@ export const startJumbo = (canvas) => {
     stopWatch = null;
 
     paper.view.onFrame = function(event) {
-        //drawLinks(rasterList);
+        updateStars();
         switch (loopState) {
             case 'ANIMATION_READY':
                 loopState = 'ANIMATION_IN_PROGRESS';
