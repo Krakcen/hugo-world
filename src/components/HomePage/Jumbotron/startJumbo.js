@@ -1,46 +1,21 @@
 import { paper } from 'paper';
 import TWEEN from 'tween.js';
 
-import { circleRadius, borderCollision, idleTimer, animationTimer  } from './varJumbo.js';
 //import { displayGrid, displayCollisions, resetCollisions } from './debugJumbo.js';
+import { circleRadius, borderCollision, idleTimer, animationTimer, iconList, linkOptions, /*tweenEases*/ } from './varJumbo.js';
 
 let loopState = 'ANIMATION_READY';
 let stopWatch = null;
+let linksList = [];
 
-const iconList = [
-    "bootstrap-logo-jumbo",
-    "github-logo-jumbo",
-    "heroku-logo-jumbo",
-    "meteor-logo-jumbo",
-    "react-logo-jumbo",
-    "slack-logo-jumbo",
-    "trello-logo-jumbo",
-    "bootstrap-logo-jumbo",
-    "github-logo-jumbo",
-    "heroku-logo-jumbo",
-    "meteor-logo-jumbo",
-    "react-logo-jumbo",
-    "slack-logo-jumbo",
-    "trello-logo-jumbo",
-    "bootstrap-logo-jumbo",
-    "github-logo-jumbo",
-    "heroku-logo-jumbo",
-    "meteor-logo-jumbo",
-    "react-logo-jumbo",
-    "slack-logo-jumbo",
-    "trello-logo-jumbo",
-];
-/*let linkList = [{
-    el1: 'hello',
-    el2: 'world',
-}];*/
 
-//util
-/*const displayPositions = (rasterList) => {
-  for (let)
-};*/
-//
-
+const getPointFromRaster = (name, rasterList) => {
+    for (let raster = 0; raster < rasterList.length; raster++) {
+        if (name === rasterList[raster].name)
+            return (rasterList[raster].raster.position);
+    }
+    return (-1);
+};
 const getRandomPoint = () => {
     let maxPoint = new paper.Point(paper.view.size.width - borderCollision, paper.view.size.height - borderCollision);
     let randomPoint;
@@ -56,7 +31,6 @@ const getRandomPoint = () => {
         finalPoint.y = borderCollision;
     return (finalPoint);
 };
-
 const getRandomPoints = (pointNb) => {
     let i = 0;
     let pointList = [];
@@ -107,26 +81,44 @@ const getRandomPoints = (pointNb) => {
     }
     return (pointList);
 };
-
 const getRaster = (id) => {
     let raster = new paper.Raster(id);
     raster.position = paper.view.center;
     raster.scale(0.35);
     return (raster);
 };
+const getLinks = (linkList, rasterList) => {
+    let cnt = 0;
+    for (let el = 0; el < rasterList.length; el++) {
+        for (let el1 = el; el1 < rasterList.length; el1++) {
+            if (el !== el1) {
+                linkList.push({
+                    seg1: rasterList[el].name,
+                    seg2: rasterList[el1].name,
+                    path: new paper.Path(linkOptions),
+                });
+                linkList[cnt].path.sendToBack();
+                cnt++;
+            }
+        }
+    }
+    return (linkList);
+};
 
-/*const getLinks = (rasterList) => {
-  for (let el in rasterList) {
-      let curEl = rasterList[el];
-      for (let el1 in rasterList) {
-          if (curEl !== rasterList[el1]) {
-          }
-      }
-  }
-};*/
+const initScene = () => {
+    let linkList = [];
 
+    let rasters = [];
+    for (let el = 0; el < iconList.length; el++) {
+        rasters.push({
+            name: iconList[el] + "-" + el,
+            raster: getRaster(iconList[el]),
+            tween: null,
+        });
+    }
+    linkList = getLinks(linkList, rasters);
 
-const initScene = (canvas) => {
+    ////////////////////////////////////////////
     let rect = new paper.Path.Rectangle({
         point: [-25, -25],
         size: [paper.view.size.width + 50, paper.view.size.height + 50],
@@ -139,43 +131,35 @@ const initScene = (canvas) => {
     space1.size = paper.view.viewSize;
     space1.position = paper.view.center;
     space1.sendToBack();
-
-    let rasters = [];
-    for (let el in iconList) {
-        rasters.push({
-            name: iconList[el],
-            raster: getRaster(iconList[el]),
-            tween: null,
-        });
-    }
-    //linkList = getLinks(rasters);
+    /////////////////////////////////////////////
 
     //displayGrid();
 
-    return (rasters);
+    return ({links: linkList, rasters: rasters});
 };
-
 const startTween = (rasterList) => {
     let randomPoints = getRandomPoints(rasterList.length);
 
+    //let randomEase = tweenEases[Math.floor(Math.random() * tweenEases.length)];
+
     for (let el = 0; el < rasterList.length; el++) {
-        rasterList[el].tween = new TWEEN.Tween(rasterList[el].raster.position);
+        if (!rasterList[el].tween)
+            rasterList[el].tween = new TWEEN.Tween(rasterList[el].raster.position);
         rasterList[el].tween.to(randomPoints[el] , animationTimer);
-        rasterList[el].tween.easing(TWEEN.Easing.Quartic.InOut);
+        rasterList[el].tween.easing(TWEEN.Easing.Quintic.InOut);
         rasterList[el].tween.start();
     }
+    rasterList[0].tween.onUpdate(() => {
+        updateLinks(linksList, rasterList);
+    });
     rasterList[0].tween.onComplete(() => {
         loopState = 'ANIMATION_OVER';
     });
 };
 
-/*const drawLinks = (rasterList) => {
-};*/
-
-
 //needs opacity handler
-/*const updateLink = (path, pointA, pointB) => {
-    let tmp = new paper.Path();
+const updateLink = (path, pointA, pointB) => {
+    let tmp = new paper.Path({visible: false});
     tmp.add(pointA);
     tmp.add(pointB);
 
@@ -184,37 +168,37 @@ const startTween = (rasterList) => {
 
     path.removeSegments();
     path.addSegments([startPoint, destPoint]);
-    path.opacity = 0.5;
+    if (path.length > 300)
+        path.visible = false;
+    else {
+        path.visible = true;
+    }
+    path.opacity = (((300 / path.length) - 1) / 2);
     tmp.remove();
     return (path);
-};*/
+};
+const updateLinks = (linksList, rasterList) => {
+    //updateLink(myPath, {x:100, y:70}, {x:600, y:400});
+
+    for (let link = 0; link < linksList.length; link++) {
+        linksList[link].path = updateLink(
+            linksList[link].path,
+            getPointFromRaster(linksList[link].seg1, rasterList),
+            getPointFromRaster(linksList[link].seg2, rasterList)
+        );
+    }
+};
 
 export const startJumbo = (canvas) => {
     paper.setup(canvas);
 
-    let rasterList = initScene(canvas);
+    //let first
+    let initRes = initScene();
+    let rasterList = initRes.rasters;
+    linksList = initRes.links;
 
     loopState = "ANIMATION_READY";
     stopWatch = null;
-
-    //sandbox
-    /*let myPath = new paper.Path();
-    myPath.strokeColor = 'white';
-    myPath.add(new paper.Point(0, 0));
-    myPath.add(new paper.Point(100, 50));
-
-    myPath.strokeWidth = 2;
-
-    let src = new paper.Path.Circle(new paper.Point(100, 70), circleRadius);
-    src.strokeColor = 'green';
-    src.strokeWidth = 2;
-
-    let dest = new paper.Path.Circle(new paper.Point(600, 400), circleRadius);
-    dest.strokeColor = 'green';
-    dest.strokeWidth = 2;
-
-    updateLink(myPath, {x:100, y:70}, {x:600, y:400});*/
-    //
 
     paper.view.onFrame = function(event) {
         //drawLinks(rasterList);

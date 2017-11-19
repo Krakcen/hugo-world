@@ -2,6 +2,18 @@ import { paper } from 'paper';
 import { circleRadius } from './varJumbo.js';
 
 let lastCollisions = [];
+//let easeText = null;
+
+/*export const displayEase = (ease) => {
+    if (easeText)
+        easeText.remove();
+    console.log(ease);
+    easeText = new PointText({
+        content: 'Click and drag to draw a line.',
+        point: new Point(20, 30),
+        fillColor: 'black'
+    });
+};*/
 
 export const resetCollisions = () => {
     if (lastCollisions.length) {
