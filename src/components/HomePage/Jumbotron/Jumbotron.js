@@ -38,12 +38,13 @@ class Jumbotron extends Component {
         if (e)
             this.imagesLoadState.push(e.target.id);
         if (this.imagesLoadState.length === 14 && (!this.props.imageJumboState)) {
-            this.props.setJumboImageProgress(Math.round((this.imagesLoadState.length / 14) * 100));
             this.props.setJumboState(true);
             this.props.setImageLoad(true);
             this.jumboStarted = true;
             this.paperProject = startJumbo(document.getElementById('hugo-jumbotron'));
         }
+        else
+            this.props.setJumboImageProgress(Math.round((this.imagesLoadState.length / 14) * 100));
     }
     componentWillUnmount() {
         this.props.setJumboState(false);
