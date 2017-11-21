@@ -14,6 +14,8 @@ const imageLoad = (state = initStore.imageState, action) => {
     switch (action.type) {
         case 'SET_IMG_LOAD_ABOUT':
             return (Object.assign({}, state, {about: action.payload}));
+        case 'SET_IMG_LOAD_JUMBO':
+            return (Object.assign({}, state, {jumbo: action.payload}));
         default:
             return (state);
     }

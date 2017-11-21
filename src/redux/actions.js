@@ -7,6 +7,7 @@ export const setNavActive = (tab) => {
 
 
 //SET_IMG_LOAD_ABOUT
+//SET_IMG_LOAD_JUMBO
 export const setImageLoad = (type, imageState) => {
     return {
         type: type,
@@ -19,4 +20,4 @@ export const setJumboLoad = (jumboState) => {
         type: 'SET_JUMBO_LOAD',
         payload: jumboState,
     };
-}
+};
