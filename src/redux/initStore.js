@@ -4,6 +4,7 @@ const store = {
         about: false,
         jumbo: false,
     },
+    jumboImageProgress: 0,
     jumboState: false,
     hello: "Hello World",
 };

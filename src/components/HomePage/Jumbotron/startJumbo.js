@@ -17,7 +17,10 @@ const getPointFromRaster = (name, rasterList) => {
     return (-1);
 };
 const getRandomPoint = () => {
-    let maxPoint = new paper.Point(paper.view.size.width - borderCollision, paper.view.size.height - borderCollision);
+    let maxPoint = {
+        x:paper.view.size.width - borderCollision,
+        y:paper.view.size.height - borderCollision,
+    };
     let randomPoint;
     let finalPoint;
 

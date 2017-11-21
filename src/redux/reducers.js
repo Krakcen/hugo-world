@@ -30,10 +30,20 @@ const jumboLoad = (state = initStore.jumboState, action) => {
     }
 };
 
+const jumboImageProgress = (state = initStore.jumboImageProgress, action) => {
+    switch (action.type) {
+        case 'SET_JUMBO_IMAGE_PROGRESS':
+            return (action.payload);
+        default:
+            return (state);
+    }
+};
+
 const reducers = combineReducers({
     navActive: navActive,
     imageLoad: imageLoad,
     jumboLoad: jumboLoad,
+    jumboImageProgress: jumboImageProgress,
 });
 
 export default reducers;

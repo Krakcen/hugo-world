@@ -21,3 +21,10 @@ export const setJumboLoad = (jumboState) => {
         payload: jumboState,
     };
 };
+
+export const setJumboImageProgress = (progress) => {
+    return {
+        type: 'SET_JUMBO_IMAGE_PROGRESS',
+        payload: progress,
+    };
+};

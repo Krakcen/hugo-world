@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Image } from 'react-bootstrap';
+import { Image, ProgressBar } from 'react-bootstrap';
 
-import { setJumboLoad, setImageLoad } from '../../../redux/actions.js';
+import { setJumboLoad, setImageLoad, setJumboImageProgress } from '../../../redux/actions.js';
 import loaderEclipse from '../../../static/images/loader_eclipse.svg';
 import './Jumbotron.css';
 import { startJumbo } from './startJumbo.js';
@@ -38,6 +38,7 @@ class Jumbotron extends Component {
         if (e)
             this.imagesLoadState.push(e.target.id);
         if (this.imagesLoadState.length === 14 && (!this.props.imageJumboState)) {
+            this.props.setJumboImageProgress(Math.round((this.imagesLoadState.length / 14) * 100));
             this.props.setJumboState(true);
             this.props.setImageLoad(true);
             this.jumboStarted = true;
@@ -66,6 +67,12 @@ class Jumbotron extends Component {
                     : <div style={{ height: window.innerHeight - 80, width: window.innerWidth, paddingTop: (window.innerHeight - 140) / 3 }} className="hugo-jumbotron-loading text-center">
                         <h1>Loading</h1>
                         <Image src={loaderEclipse}/>
+                        <div className="container-progress-bar">
+                        <div className="progress-bar-hugo">
+                            <h3>{ this.props.jumboImageProgress } %</h3>
+                            <ProgressBar active bsStyle="warning" now={this.props.jumboImageProgress} />
+                        </div>
+                        </div>
                     </div>
                 }
                 <div ref="jumboImageList" style={{display:'none'}}>
@@ -91,6 +98,7 @@ class Jumbotron extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return ({
+        jumboImageProgress: state.jumboImageProgress,
         imageJumboState: state.imageLoad.jumbo,
         jumboState: state.jumboLoad,
     });
@@ -100,6 +108,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return ({
         setImageLoad: (imageState) => { dispatch(setImageLoad('SET_IMG_LOAD_JUMBO', imageState)) },
         setJumboState: (jumboState) => { dispatch(setJumboLoad(jumboState)) },
+        setJumboImageProgress: (progress) => { dispatch(setJumboImageProgress(progress)) },
     });
 };
 
