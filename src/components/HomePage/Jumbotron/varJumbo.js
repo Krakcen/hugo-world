@@ -12,19 +12,17 @@ export const linkOptions = {
 };
 export const iconList = [
     "bootstrap-logo-jumbo",
+    "csgo-logo-jumbo",
+    "epitech-logo-jumbo",
     "github-logo-jumbo",
-    "heroku-logo-jumbo",
     "meteor-logo-jumbo",
     "react-logo-jumbo",
+    "reactrouter-logo-jumbo",
+    "redux-logo-jumbo",
+    "skateboard-logo-jumbo",
     "slack-logo-jumbo",
     "trello-logo-jumbo",
-    "bootstrap-logo-jumbo",
-    "github-logo-jumbo",
-    "heroku-logo-jumbo",
-    "meteor-logo-jumbo",
-    "react-logo-jumbo",
-    "slack-logo-jumbo",
-    "trello-logo-jumbo",
+    "webstorm-logo-jumbo",
 ];
 
 export const tweenEases = [

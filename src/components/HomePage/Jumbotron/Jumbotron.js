@@ -7,15 +7,22 @@ import loaderEclipse from '../../../static/images/loader_eclipse.svg';
 import './Jumbotron.css';
 import { startJumbo } from './startJumbo.js';
 
-import boostrap from '../../../static/images/jumbotron/bootstrap_icon.png';
-import github from '../../../static/images/jumbotron/github_icon.png';
-import heroku from '../../../static/images/jumbotron/heroku_icon.png';
-import meteor from '../../../static/images/jumbotron/meteor_icon.png';
-import react from '../../../static/images/jumbotron/react_icon.png';
-import slack from '../../../static/images/jumbotron/slack_icon.png';
-import trello from '../../../static/images/jumbotron/trello_icon.png';
-import space1 from '../../../static/images/jumbotron/space1.jpg';
-import space2 from '../../../static/images/jumbotron/space2.jpg';
+
+import hugoText from '../../../static/images/jumbotron/hugo-text.png';
+import space from '../../../static/images/jumbotron/space.jpg';
+import moonBootstrap from '../../../static/images/jumbotron/moon-bootstrap.png';
+import moonCsgo from '../../../static/images/jumbotron/moon-csgo.png';
+import moonEpitech from '../../../static/images/jumbotron/moon-epitech.png';
+import moonGithub from '../../../static/images/jumbotron/moon-github.png';
+import moonMeteor from '../../../static/images/jumbotron/moon-meteor.png';
+import moonReact from '../../../static/images/jumbotron/moon-react.png';
+import moonReactRouter from '../../../static/images/jumbotron/moon-react-router.png';
+import moonRedux from '../../../static/images/jumbotron/moon-redux.png';
+import moonSkateboard from '../../../static/images/jumbotron/moon-skateboard.png';
+import moonSlack from '../../../static/images/jumbotron/moon-slack.png';
+import moonTrello from '../../../static/images/jumbotron/moon-trello.png';
+import moonWebstorm from '../../../static/images/jumbotron/moon-webstorm.png';
+
 
 class Jumbotron extends Component {
     constructor(props) {
@@ -30,7 +37,7 @@ class Jumbotron extends Component {
     imagesLoaded(e = false) {
         if (e)
             this.imagesLoadState.push(e.target.id);
-        if (this.imagesLoadState.length === 9 && (!this.props.imageJumboState)) {
+        if (this.imagesLoadState.length === 14 && (!this.props.imageJumboState)) {
             this.props.setJumboState(true);
             this.props.setImageLoad(true);
             this.jumboStarted = true;
@@ -62,15 +69,20 @@ class Jumbotron extends Component {
                     </div>
                 }
                 <div ref="jumboImageList" style={{display:'none'}}>
-                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={space1} id="space1-jumbo"/>
-                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={space2} id="space2-jumbo"/>
-                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={boostrap} id="bootstrap-logo-jumbo"/>
-                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={github} id="github-logo-jumbo"/>
-                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={heroku} id="heroku-logo-jumbo"/>
-                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={meteor} id="meteor-logo-jumbo"/>
-                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={react} id="react-logo-jumbo"/>
-                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={slack} id="slack-logo-jumbo"/>
-                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={trello} id="trello-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={hugoText} id="hugo-text-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={space} id="space-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonBootstrap} id="bootstrap-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonCsgo} id="csgo-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonEpitech} id="epitech-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonGithub} id="github-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonMeteor} id="meteor-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonReact} id="react-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonReactRouter} id="reactrouter-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonRedux} id="redux-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonSkateboard} id="skateboard-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonSlack} id="slack-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonTrello} id="trello-logo-jumbo"/>
+                    <img onLoad={(e) => {this.imagesLoaded(e)}} alt="none" src={moonWebstorm} id="webstorm-logo-jumbo"/>
                 </div>
             </div>
         );

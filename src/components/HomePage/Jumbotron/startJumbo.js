@@ -2,13 +2,12 @@ import { paper } from 'paper';
 import TWEEN from 'tween.js';
 
 //import { displayGrid, displayCollisions, resetCollisions } from './debugJumbo.js';
-import { circleRadius, borderCollision, idleTimer, animationTimer, iconList, linkOptions, starCount /*tweenEases*/ } from './varJumbo.js';
+import { circleRadius, borderCollision, idleTimer, animationTimer, iconList, linkOptions, starCount } from './varJumbo.js';
 
 let loopState = 'ANIMATION_READY';
 let stopWatch = null;
 let linksList = [];
 let starList = [];
-
 
 const getPointFromRaster = (name, rasterList) => {
     for (let raster = 0; raster < rasterList.length; raster++) {
@@ -105,7 +104,6 @@ const getLinks = (linkList, rasterList) => {
     }
     return (linkList);
 };
-
 const updateStars = () => {
     for (let i = 0; i < starList.length; i++) {
         starList[i].position.x += starList[i].bounds.width / 20;
@@ -130,14 +128,14 @@ const initStars = () => {
         starList[i].scale((i * 0.40) / starCount);
     }
 };
-
 const initScene = () => {
     let linkList = [];
-
     let rasters = [];
 
+    //load stars
     initStars();
 
+    //load planets & compute links
     for (let el = 0; el < iconList.length; el++) {
         rasters.push({
             name: iconList[el] + "-" + el,
@@ -147,7 +145,13 @@ const initScene = () => {
     }
     linkList = getLinks(linkList, rasters);
 
-    ////////////////////////////////////////////
+    //load hugo text
+    let hugoText = new paper.Raster('hugo-text-jumbo');
+    hugoText.position.x = paper.view.size.width / 2;
+    hugoText.position.y = 250;
+    hugoText.scale(0.5);
+
+    //load space shadow
     let rect = new paper.Path.Rectangle({
         point: [-25, -25],
         size: [paper.view.size.width + 50, paper.view.size.height + 50],
@@ -156,15 +160,13 @@ const initScene = () => {
     rect.sendToBack();
     rect.fillColor = new paper.Color(0, 0, 0, 0.5);
 
-    //let space1 = new paper.Raster('space1-jumbo');
-    let space1 = new paper.Raster('space2-jumbo');
-    space1.size = paper.view.viewSize;
-    space1.position = paper.view.center;
-    space1.sendToBack();
-    /////////////////////////////////////////////
+    //load space
+    let space = new paper.Raster('space-jumbo');
+    space.size = paper.view.viewSize;
+    space.position = paper.view.center;
+    space.sendToBack();
 
     //displayGrid();
-
     return ({links: linkList, rasters: rasters});
 };
 const startTween = (rasterList) => {
@@ -186,8 +188,6 @@ const startTween = (rasterList) => {
         loopState = 'ANIMATION_OVER';
     });
 };
-
-//needs opacity handler
 const updateLink = (path, pointA, pointB) => {
     let tmp = new paper.Path({visible: false});
     tmp.add(pointA);
@@ -218,21 +218,17 @@ const updateLinks = (linksList, rasterList) => {
         );
     }
 };
-
 export const startJumbo = (canvas) => {
-    paper.setup(canvas);
-
     loopState = 'ANIMATION_READY';
     stopWatch = null;
     linksList = [];
     starList = [];
 
+    paper.setup(canvas);
+
     let initRes = initScene();
     let rasterList = initRes.rasters;
     linksList = initRes.links;
-
-    loopState = "ANIMATION_READY";
-    stopWatch = null;
 
     paper.view.onFrame = function(event) {
         updateStars();
