@@ -34,17 +34,18 @@ class Jumbotron extends Component {
             this.props.setJumboState(true);
             this.props.setImageLoad(true);
             this.jumboStarted = true;
-            startJumbo(document.getElementById('hugo-jumbotron'));
+            this.paperProject = startJumbo(document.getElementById('hugo-jumbotron'));
         }
     }
     componentWillUnmount() {
         this.props.setJumboState(false);
+        this.paperProject.clear();
     }
     componentDidMount() {
         if (this.props.imageJumboState) {
             setTimeout(() => {
                 this.props.setJumboState(true);
-                startJumbo(document.getElementById('hugo-jumbotron'));
+                this.paperProject = startJumbo(document.getElementById('hugo-jumbotron'));
             }, 1000);
         }
     }

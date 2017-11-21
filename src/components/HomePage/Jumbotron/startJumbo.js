@@ -222,6 +222,11 @@ const updateLinks = (linksList, rasterList) => {
 export const startJumbo = (canvas) => {
     paper.setup(canvas);
 
+    loopState = 'ANIMATION_READY';
+    stopWatch = null;
+    linksList = [];
+    starList = [];
+
     let initRes = initScene();
     let rasterList = initRes.rasters;
     linksList = initRes.links;
@@ -255,4 +260,5 @@ export const startJumbo = (canvas) => {
         }
     };
     paper.view.draw();
+    return (paper.project);
 };
