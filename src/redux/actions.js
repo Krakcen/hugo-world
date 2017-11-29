@@ -5,6 +5,13 @@ export const setNavActive = (tab) => {
     };
 };
 
+export const setGalleryState = ( galleryState ) => {
+    return {
+        type: 'SET_GALLERY_STATE',
+        payload: galleryState,
+    };
+};
+
 
 //SET_IMG_LOAD_ABOUT
 //SET_IMG_LOAD_JUMBO

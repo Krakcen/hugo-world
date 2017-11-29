@@ -4,6 +4,7 @@
   "homepage": "https://villevh.com",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "bootstrap": "^3.3.7",
     "flag-icon-css": "^2.8.0",
     "font-awesome": "^4.7.0",

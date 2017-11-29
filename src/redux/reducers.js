@@ -39,11 +39,21 @@ const jumboImageProgress = (state = initStore.jumboImageProgress, action) => {
     }
 };
 
+const galleryState = (state = initStore.galleryState, action) => {
+    switch (action.type) {
+        case 'SET_GALLERY_STATE':
+            return (action.payload);
+        default:
+            return (state);
+    }
+};
+
 const reducers = combineReducers({
     navActive: navActive,
     imageLoad: imageLoad,
     jumboLoad: jumboLoad,
     jumboImageProgress: jumboImageProgress,
+    galleryState: galleryState,
 });
 
 export default reducers;

@@ -6,6 +6,7 @@ const store = {
     },
     jumboImageProgress: 0,
     jumboState: false,
+    galleryState: null,
     hello: "Hello World",
 };
 
