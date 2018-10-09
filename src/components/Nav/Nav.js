@@ -17,10 +17,10 @@ class Nav extends Component {
                 this.props.onNavLinkClicked([true, false, false, false]);
                 return (0);
             case "/projects":
-                this.props.onNavLinkClicked([false, true, false, false]);
+                //this.props.onNavLinkClicked([false, true, false, false]);
                 return (0);
             case "/gallery":
-                this.props.onNavLinkClicked([false, false, true, false]);
+                //this.props.onNavLinkClicked([false, false, true, false]);
                 return (0);
             case "/about":
                 this.props.onNavLinkClicked([false, false, false, true]);
